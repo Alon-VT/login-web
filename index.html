@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>panel de login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="/CSS/style.css">
 </head>
 <body>
-    
+
+  <div class="container" onclick="handleClick()">
+    <div class="top"></div>
+    <div class="bottom"></div>
+    <div class="center">
+      <h2>iniciar sesion</h2>
+      <input type="email" placeholder="Email">
+      <input type="password" placeholder="Password">
+    </div>
+  </div>
+
+  <script>
+    function handleClick() {
+      console.log('Container clicked');
+    }
+  </script>
+
 </body>
 </html>
+
