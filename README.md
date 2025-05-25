@@ -76,7 +76,7 @@ rednova-website/
 │
 ├── public/            #Archivos estáticos tipo html ________________
 │   ├──/AREAS          #conenido estáticos tipo html                 |
-│   ├──/CSS            #css en                                       |
+│   ├──/CSS            #css para darle estilo a el login y el index  |
 │   ├──/JS             #javascipt de los paneles de login y etc.     |
 │   ├──/IMG                                                          |
 |   /index.html                                                      |   
