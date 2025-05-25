@@ -4,7 +4,7 @@ const { Pool } = require('pg');
 const bcrypt = require('bcrypt');
 const app = express();
 
-// Conexión a PostgreSQL
+
 const pool = new Pool({
   user: 'alon',
   host: '192.168.100.46',
@@ -13,19 +13,19 @@ const pool = new Pool({
   port: 5432,
 });
 
-// Middleware
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Servir archivos estáticos desde la carpeta public
+
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
-// Ruta: Registro
+
 app.post('/register', async (req, res) => {
   const { name, email, password, area } = req.body;
 
   try {
-    // Validar si el usuario ya existe
+
     const userExists = await pool.query('SELECT id FROM usuarios WHERE email = $1', [email]);
     if (userExists.rowCount > 0) {
       return res.status(400).json({ error: 'El correo ya está registrado' });
@@ -44,7 +44,7 @@ app.post('/register', async (req, res) => {
   }
 });
 
-// Ruta: Login
+
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
