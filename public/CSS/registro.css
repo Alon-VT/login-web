@@ -1,0 +1,93 @@
+body {
+  font-family: 'Raleway', sans-serif;
+  background: linear-gradient(to right, #ee9ca7, #ffdde1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+form {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+  color: #a83f5f;
+}
+
+input, select {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+button {
+  width: 100%;
+  padding: 0.8rem;
+  background: #a83f5f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #8a2e49;
+}
+
+/* Botón hamburguesa */
+.btn-menu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 45px;
+  height: 45px;
+  background: #a83f5f;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(168, 63, 95, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+  transition: background-color 0.3s ease;
+}
+.btn-menu:hover {
+  background: #8a2e49;
+}
+.btn-menu span,
+.btn-menu span::before,
+.btn-menu span::after {
+  display: block;
+  background: white;
+  height: 3px;
+  width: 25px;
+  border-radius: 3px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.btn-menu span::before,
+.btn-menu span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+.btn-menu span::before {
+  top: -8px;
+}
+.btn-menu span::after {
+  top: 8px;
+}

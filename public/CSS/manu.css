@@ -1,0 +1,99 @@
+:root {
+  --primary-color: #a83f5f;
+  --primary-hover: #8a2e49;
+  --text-color: #f0f0f5;
+  --menu-width: 260px;
+}
+
+.btn-menu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 45px;
+  height: 45px;
+  background: var(--primary-color);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 15px rgba(168, 63, 95, 0.5);
+  transition: background-color 0.3s ease;
+}
+.btn-menu:hover {
+  background: var(--primary-hover);
+}
+.btn-menu span,
+.btn-menu span::before,
+.btn-menu span::after {
+  background: white;
+  height: 3px;
+  width: 25px;
+  border-radius: 3px;
+  position: relative;
+  display: block;
+  transition: all 0.3s ease;
+}
+.btn-menu span::before,
+.btn-menu span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+.btn-menu span::before {
+  top: -8px;
+}
+.btn-menu span::after {
+  top: 8px;
+}
+.btn-menu.open span {
+  background: transparent;
+}
+.btn-menu.open span::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+.btn-menu.open span::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -var(--menu-width);
+  width: var(--menu-width);
+  height: 100vh;
+  background: #8a2e49;
+  color: var(--text-color);
+  box-shadow: 3px 0 15px rgba(0, 0, 0, 0.5);
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: left 0.35s ease;
+  z-index: 1100;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.side-menu.open {
+  left: 0;
+}
+.side-menu[hidden] {
+  display: none;
+}
+.side-menu a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+.side-menu a:hover {
+  background: var(--primary-color);
+}
+

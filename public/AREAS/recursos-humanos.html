@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Recursos Humanos - RedNova</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f9f9f9; padding: 20px; }
+  h1 { color: #dc3545; }
+  form { background: white; padding: 20px; border-radius: 10px; max-width: 500px; margin-top: 20px; }
+  label { display: block; margin-top: 15px; font-weight: bold; }
+  input, select { width: 100%; padding: 8px; margin-top: 5px; border-radius: 6px; border: 1px solid #ccc; }
+  button { margin-top: 20px; background: #dc3545; color: white; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; }
+  button:hover { background: #a71d2a; }
+  .message { margin-top: 15px; color: green; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<h1>Recursos Humanos - Registro de Empleado</h1>
+
+<form id="form-recursos-humanos">
+  <label for="rh-id">ID Área</label>
+  <input type="text" id="rh-id" name="id_area" placeholder="Ejemplo: RH001" required />
+
+  <label for="rh-nombre">Nombre completo</label>
+  <input type="text" id="rh-nombre" name="nombre" required />
+
+  <label for="rh-puesto">Puesto</label>
+  <input type="text" id="rh-puesto" name="puesto" required />
+
+  <label for="rh-departamento">Departamento</label>
+  <input type="text" id="rh-departamento" name="departamento" required />
+
+  <label for="rh-fecha-ingreso">Fecha de ingreso</label>
+  <input type="date" id="rh-fecha-ingreso" name="fecha_ingreso" required />
+
+  <button type="submit">Guardar Empleado</button>
+  <div class="message" id="msg-recursos-humanos"></div>
+</form>
+
+<script>
+  document.getElementById('form-recursos-humanos').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const msg = document.getElementById('msg-recursos-humanos');
+    msg.textContent = 'Empleado guardado correctamente.';
+    this.reset();
+    setTimeout(() => { msg.textContent = ''; }, 3000);
+  });
+</script>
+
+</body>
+</html>

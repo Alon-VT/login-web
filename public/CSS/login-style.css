@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+:root {
+  --primary-color: #3b82f6;       
+  --primary-hover: #2563eb;       
+  --background: linear-gradient(to right, #1e3a8a, #3b82f6);
+  --text-color: #f0f4f8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif;
+}
+
+body {
+  background: var(--background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: var(--text-color);
+  overflow-x: hidden;
+}
+
+
+.btn-menu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 45px;
+  height: 45px;
+  background: var(--primary-color);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(59,130,246,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+  transition: background-color 0.3s ease;
+}
+.btn-menu:hover {
+  background: var(--primary-hover);
+}
+.btn-menu span,
+.btn-menu span::before,
+.btn-menu span::after {
+  display: block;
+  background: white;
+  height: 3px;
+  width: 25px;
+  border-radius: 3px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.btn-menu span::before,
+.btn-menu span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+.btn-menu span::before {
+  top: -8px;
+}
+.btn-menu span::after {
+  top: 8px;
+}
+.btn-menu.open span {
+  background: transparent;
+}
+.btn-menu.open span::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+.btn-menu.open span::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100vh;
+  background: #1e40af;
+  box-shadow: 3px 0 15px rgba(0,0,0,0.5);
+  padding: 80px 30px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  transition: left 0.35s cubic-bezier(0.77,0,0.175,1);
+  z-index: 1100;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.side-menu.open {
+  left: 0;
+}
+.side-menu[hidden] {
+  display: none;
+}
+.side-menu a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 12px 20px;
+  border-radius: 10px;
+  transition: background-color 0.25s ease;
+}
+.side-menu a:hover {
+  background: var(--primary-color);
+  box-shadow: 0 4px 10px rgba(59,130,246,0.4);
+}
+
+
+form#loginForm {
+  background: rgba(255 255 255 / 0.15);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  width: 100%;
+  max-width: 400px;
+  color: white;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+form#loginForm h2 {
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+form#loginForm input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+form#loginForm input[type="email"],
+form#loginForm input[type="password"] {
+  background: rgba(255 255 255 / 0.9);
+  color: #1e3a8a;
+  border: 1px solid #2563eb;
+  transition: border-color 0.3s ease;
+}
+
+form#loginForm input[type="email"]:focus,
+form#loginForm input[type="password"]:focus {
+  border-color: var(--primary-hover);
+  outline: none;
+}
+
+form#loginForm button {
+  width: 100%;
+  padding: 0.8rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+form#loginForm button:hover {
+  background: var(--primary-hover);
+}
+
+@media (max-width: 600px) {
+  .side-menu {
+    width: 220px;
+    padding-top: 70px;
+    border-radius: 0;
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "pg": "^8.16.0"
+  },
+  "name": "login-web",
+  "description": "esta web app es para logearte con una db por detras y dependio del nivel del usuario tendras mas o menos funciones",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alon-VT/login-web.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alon-VT/login-web/issues"
+  },
+  "homepage": "https://github.com/Alon-VT/login-web#readme",
+  "keywords": []
+}

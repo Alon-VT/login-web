@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Compras - RedNova</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f9f9f9; padding: 20px; }
+  h1 { color: #ffc107; }
+  form { background: white; padding: 20px; border-radius: 10px; max-width: 500px; margin-top: 20px; }
+  label { display: block; margin-top: 15px; font-weight: bold; }
+  input, textarea { width: 100%; padding: 8px; margin-top: 5px; border-radius: 6px; border: 1px solid #ccc; }
+  button { margin-top: 20px; background: #ffc107; color: black; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; }
+  button:hover { background: #e0a800; }
+  .message { margin-top: 15px; color: green; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<h1>Compras - Registro de Pedido</h1>
+
+<form id="form-compras">
+  <label for="compras-id">ID Área</label>
+  <input type="text" id="compras-id" name="id_area" placeholder="Ejemplo: COM001" required />
+
+  <label for="compras-proveedor">Proveedor</label>
+  <input type="text" id="compras-proveedor" name="proveedor" required />
+
+  <label for="compras-producto">Producto</label>
+  <input type="text" id="compras-producto" name="producto" required />
+
+  <label for="compras-cantidad">Cantidad</label>
+  <input type="number" id="compras-cantidad" name="cantidad" min="1" required />
+
+  <label for="compras-fecha">Fecha pedido</label>
+  <input type="date" id="compras-fecha" name="fecha_pedido" required />
+
+  <button type="submit">Guardar Pedido</button>
+  <div class="message" id="msg-compras"></div>
+</form>
+
+<script>
+  document.getElementById('form-compras').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const msg = document.getElementById('msg-compras');
+    msg.textContent = 'Pedido guardado correctamente.';
+    this.reset();
+    setTimeout(() => { msg.textContent = ''; }, 3000);
+  });
+</script>
+
+</body>
+</html>

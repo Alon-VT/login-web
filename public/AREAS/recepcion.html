@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Recepción - RedNova</title>
+<style>
+  body {
+    font-family: sans-serif;
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+  h2 {
+    color: #333;
+  }
+  .container {
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  }
+  form input, form textarea, form button, form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+  form button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  form button:hover {
+    background-color: #0056b3;
+  }
+  table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  th, td {
+    padding: 12px;
+    text-align: left;
+  }
+  th {
+    background-color: #007BFF;
+    color: white;
+  }
+  .btn-action {
+    cursor: pointer;
+    padding: 5px 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+  }
+  .btn-action.exit {
+    background-color: #dc3545;
+  }
+  .btn-action:hover {
+    opacity: 0.85;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <h2>Registrar Reservación</h2>
+  <form id="reservaForm">
+    <input type="text" name="nombre" placeholder="Nombre completo" required />
+    <input type="email" name="email" placeholder="Correo electrónico" required />
+    <input type="tel" name="telefono" placeholder="Teléfono" required />
+    <input type="datetime-local" name="fecha_hora" required />
+    <textarea name="motivo" placeholder="Motivo de la visita" required></textarea>
+    <button type="submit">Agendar</button>
+  </form>
+
+  <hr style="margin: 30px 0;" />
+
+  <h2>Visitantes Activos</h2>
+  <table id="visitantesTable">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Teléfono</th>
+        <th>Hora de Entrada</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+
+</div>
+
+<script>
+  const API_BASE = 'http://localhost:3000';
+
+
+  document.getElementById('reservaForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const formData = Object.fromEntries(new FormData(e.target));
+    try {
+      const res = await fetch(`${API_BASE}/reservar`, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(formData)
+      });
+      const data = await res.json();
+      alert(data.message || 'Error');
+      if (res.ok) e.target.reset();
+      cargarVisitantesActivos();
+    } catch (err) {
+      alert('Error en la conexión con el servidor');
+    }
+  });
+
+
+  async function cargarVisitantesActivos() {
+    try {
+      const res = await fetch(`${API_BASE}/visitantes/activos`);
+      const visitantes = await res.json();
+      const tbody = document.querySelector('#visitantesTable tbody');
+      tbody.innerHTML = '';
+      visitantes.forEach(v => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${v.nombre}</td>
+          <td>${v.telefono}</td>
+          <td>${new Date(v.entrada).toLocaleString()}</td>
+          <td>
+            <button class="btn-action exit" onclick="registrarSalida(${v.id})">Registrar Salida</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    } catch {
+      alert('Error al cargar visitantes');
+    }
+  }
+
+  async function registrarSalida(id) {
+    if (!confirm('¿Registrar salida de este visitante?')) return;
+    try {
+      const res = await fetch(`${API_BASE}/visitantes/salida/${id}`, { method: 'POST' });
+      const data = await res.json();
+      alert(data.message || 'Error');
+      if (res.ok) cargarVisitantesActivos();
+    } catch {
+      alert('Error en la conexión con el servidor');
+    }
+  }
+
+
+  cargarVisitantesActivos();
+</script>
+
+</body>
+</html>

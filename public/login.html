@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Iniciar sesión | RedNova</title>
+  <link rel="stylesheet" href="CSS/login-style.css" />
+</head>
+<body>
+
+  <button class="btn-menu" id="btnMenu" aria-label="Abrir menú" aria-expanded="false" aria-controls="sideMenu">
+    <span></span>
+  </button>
+
+  <nav class="side-menu" id="sideMenu" aria-label="Menú de navegación" hidden>
+    <a href="index.html">Inicio</a>
+    <a href="login.html">Iniciar sesión</a>
+    <a href="registro.html">Registrarse</a>
+  </nav>
+
+  <form id="loginForm">
+    <h2>Iniciar sesión</h2>
+    <input type="email" name="email" placeholder="Correo electrónico" required />
+    <input type="password" name="password" placeholder="Contraseña" required />
+    <button type="submit">Ingresar</button>
+  </form>
+
+  <script src="JS/menu.js"></script>
+  <script src="JS/login.js"></script>
+</body>
+</html>
+
