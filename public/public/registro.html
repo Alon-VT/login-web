@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registro | RedNova</title>
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet" />
+
+
+  <link rel="stylesheet" href="CSS/manu.css" />
+
+
+  <link rel="stylesheet" href="CSS/registro.css" />
+</head>
+<body>
+
+  <button class="btn-menu" id="btnMenu" aria-label="Abrir menú" aria-expanded="false" aria-controls="sideMenu">
+    <span></span>
+  </button>
+
+
+  <nav class="side-menu" id="sideMenu" aria-label="Menú de navegación" hidden>
+    <a href="index.html">Inicio</a>
+    <a href="login.html">Iniciar sesión</a>
+    <a href="registro.html">Registrarse</a>
+  </nav>
+
+
+  <form id="registerForm">
+    <h2>Registro</h2>
+    <input type="text" name="nombre" placeholder="Nombre completo" required />
+    <input type="email" name="email" placeholder="Correo electrónico" required />
+    <input type="password" name="password" placeholder="Contraseña" required />
+    <select name="area" required>
+      <option value="">Selecciona un área</option>
+      <option value="ventas">Ventas</option>
+      <option value="compras">Compras</option>
+      <option value="finanzas">Finanzas</option>
+      <option value="recursos_humanos">Recursos Humanos</option>
+      <option value="produccion">Producción</option>
+      <option value="recepcion">Recepción</option>
+      <option value="mercadotecnia">Mercadotecnia</option>
+    </select>
+    <button type="submit">Registrarse</button>
+  </form>
+
+  <script src="JS/menu.js" defer></script>
+  <script src="JS/registro.js" defer></script>
+</body>
+</html>
+

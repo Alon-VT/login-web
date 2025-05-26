@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mercadotecnia - RedNova</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f9f9f9; padding: 20px; }
+  h1 { color: #007BFF; }
+  form { background: white; padding: 20px; border-radius: 10px; max-width: 500px; margin-top: 20px; }
+  label { display: block; margin-top: 15px; font-weight: bold; }
+  input, textarea { width: 100%; padding: 8px; margin-top: 5px; border-radius: 6px; border: 1px solid #ccc; }
+  button { margin-top: 20px; background: #007BFF; color: white; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; }
+  button:hover { background: #0056b3; }
+  .message { margin-top: 15px; color: green; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<h1>Mercadotecnia - Registro de Campaña</h1>
+
+<form id="form-mercadotecnia">
+  <label for="campania-id">ID Área</label>
+  <input type="text" id="campania-id" name="id_area" placeholder="Ejemplo: MKT001" required />
+
+  <label for="campania-nombre">Nombre de la campaña</label>
+  <input type="text" id="campania-nombre" name="nombre" required />
+
+  <label for="campania-descripcion">Descripción</label>
+  <textarea id="campania-descripcion" name="descripcion"></textarea>
+
+  <label for="campania-fecha-inicio">Fecha inicio</label>
+  <input type="date" id="campania-fecha-inicio" name="fecha_inicio" />
+
+  <label for="campania-fecha-fin">Fecha fin</label>
+  <input type="date" id="campania-fecha-fin" name="fecha_fin" />
+
+  <label for="campania-presupuesto">Presupuesto</label>
+  <input type="number" id="campania-presupuesto" name="presupuesto" min="0" step="0.01" />
+
+  <button type="submit">Guardar Campaña</button>
+  <div class="message" id="msg-mercadotecnia"></div>
+</form>
+
+<script>
+  document.getElementById('form-mercadotecnia').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const msg = document.getElementById('msg-mercadotecnia');
+    msg.textContent = 'Campaña guardada correctamente.';
+    this.reset();
+    setTimeout(() => { msg.textContent = ''; }, 3000);
+  });
+</script>
+
+</body>
+</html>
