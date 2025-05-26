@@ -6,11 +6,14 @@ const app = express();
 
 
 const pool = new Pool({
-  user: 'alon',
-  host: '192.168.100.46',
-  database: 'rednova_db',
-  password: 'equipo3606',
+  user: 'postgres', // tu usuario en RDS
+  host: 'rednova.cneiusuw6qbn.ap-northeast-1.rds.amazonaws.com', // endpoint RDS
+  database: 'rednova', // base creada en RDS
+  password: 'lisagmo142000', // tu contraseña RDS
   port: 5432,
+  ssl: {
+    rejectUnauthorized: false  // para conexión segura con RDS
+  }
 });
 
 
