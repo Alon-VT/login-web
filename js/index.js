@@ -7,9 +7,9 @@ const app = express();
 
 const pool = new Pool({
   user: 'postgres', 
-  host: '',
+  host: '',  // agrega tu host de PostgreSQL
   database: 'rednova', 
-  password: '', 
+  password: '', // agrega tu contraseña de PostgreSQL
   port: 5432,
   ssl: {
     rejectUnauthorized: false  
@@ -74,4 +74,38 @@ app.post('/login', async (req, res) => {
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});
+
+const nodemailer = require('nodemailer');
+
+app.post('/send-message', async (req, res) => {
+  const { name, email, message } = req.body;
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: '',           
+      pass: '',      
+    }
+  });
+
+  const mailOptions = {
+    from: `"${name}" <${email}>`,
+    to: '',               
+    subject: 'Mensaje desde formulario de contacto RedNova',
+    text: `
+    Nombre: ${name}
+    Correo: ${email}
+    Mensaje:
+    ${message}
+    `
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ message: 'Mensaje enviado con éxito' });
+  } catch (error) {
+    console.error('Error al enviar correo:', error);
+    res.status(500).json({ error: 'Error al enviar mensaje' });
+  }
 });

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="IMG/red_nova.png" />
+  <link rel="stylesheet" href="CSS/navbar.css" />
+  <link rel="stylesheet" href="CSS/contacto.css" />
+
+
+  <title>Contacto</title>
+</head>
+<body>
+
+<div id="mainContent">
+  <button class="btn-menu" id="btnMenu" aria-label="Abrir menú" aria-expanded="false" aria-controls="sideMenu">
+    <span></span>
+  </button>
+
+  <nav class="side-menu" id="sideMenu" aria-label="Menú de navegacion" hidden>
+    <a href="index.html">Inicio</a>
+    <a href="login.html">Iniciar sesión</a>
+    <a href="registro.html">Registrarse</a>
+  </nav>
+
+  <form class="contact-panel" action="/send-message" method="POST">
+    <h2>Contáctanos</h2>
+
+    <label for="name">Nombre</label>
+    <input type="text" id="name" name="name" placeholder="Su nombre" required />
+
+    <label for="email">Correo electrónico</label>
+    <input type="email" id="email" name="email" placeholder="correo@email.com" required />
+
+    <label for="message">Mensaje</label>
+    <textarea id="message" name="message" rows="4" placeholder="Escribe tu mensaje aqui... " required></textarea>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <script src="JS/navbar.js"></script>
+  <script src="JS/menu.js"></script>
+  </div>
+</body>
+</html>

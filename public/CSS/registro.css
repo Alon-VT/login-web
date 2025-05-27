@@ -1,34 +1,36 @@
 body {
   font-family: 'Raleway', sans-serif;
   background: linear-gradient(to right, #ee9ca7, #ffdde1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
   margin: 0;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 form {
-  background: white;
+  background: #ffc3c3;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
   text-align: center;
-}
-
-h2 {
-  margin-bottom: 1.5rem;
-  color: #a83f5f;
 }
 
 input, select {
   width: 100%;
   padding: 0.8rem;
   margin-bottom: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #ffffff;
   border-radius: 8px;
+  box-sizing: border-box;
 }
 
 button {
@@ -46,8 +48,16 @@ button {
 button:hover {
   background: #8a2e49;
 }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
 
-/* Botón hamburguesa */
+
+
 .btn-menu {
   position: fixed;
   top: 20px;

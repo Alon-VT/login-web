@@ -10,39 +10,38 @@
   <link rel="icon" type="image/png" href="IMG/red_nova.png" />
 </head>
 <body>
-
+<body>
   <button class="btn-menu" id="btnMenu" aria-label="Abrir menú" aria-expanded="false" aria-controls="sideMenu">
     <span></span>
   </button>
 
-
   <nav class="side-menu" id="sideMenu" aria-label="Menú de navegación" hidden>
     <a href="index.html">Inicio</a>
     <a href="login.html">Iniciar sesión</a>
-    <a href="registro.html">Registrarse</a>
+    <a href="contacto.html">Contacto</a>
   </nav>
 
+  <div class="container">
+    <form id="registerForm">
+      <h2>Registro</h2>
+      <input type="text" name="nombre" placeholder="Nombre completo" required />
+      <input type="email" name="email" placeholder="Correo electrónico" required />
+      <input type="password" name="password" placeholder="Contraseña" required />
+      <select name="area" required>
+        <option value="">Selecciona un área</option>
+        <option value="ventas">Ventas</option>
+        <option value="compras">Compras</option>
+        <option value="finanzas">Finanzas</option>
+        <option value="recursos_humanos">Recursos Humanos</option>
+        <option value="produccion">Producción</option>
+        <option value="recepcion">Recepción</option>
+        <option value="mercadotecnia">Mercadotecnia</option>
+      </select>
+      <button type="submit">Registrarse</button>
+    </form>
+  </div>
+</body>
 
-  <form id="registerForm">
-    <h2>Registro</h2>
-    <input type="text" name="nombre" placeholder="Nombre completo" required />
-    <input type="email" name="email" placeholder="Correo electrónico" required />
-    <input type="password" name="password" placeholder="Contraseña" required />
-    <select name="area" required>
-      <option value="">Selecciona un área</option>
-      <option value="ventas">Ventas</option>
-      <option value="compras">Compras</option>
-      <option value="finanzas">Finanzas</option>
-      <option value="recursos_humanos">Recursos Humanos</option>
-      <option value="produccion">Producción</option>
-      <option value="recepcion">Recepción</option>
-      <option value="mercadotecnia">Mercadotecnia</option>
-    </select>
-    <button type="submit">Registrarse</button>
-  </form>
-
-  <script src="JS/menu.js" defer></script>
-  <script src="JS/registro.js" defer></script>
 </body>
 </html>
 
