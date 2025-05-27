@@ -7,9 +7,9 @@ const app = express();
 
 const pool = new Pool({
   user: 'postgres', 
-  host: 'rednova.cneiusuw6qbn.ap-northeast-1.rds.amazonaws.com',
+  host: '',  // agrega tu host de PostgreSQL S
   database: 'rednova', 
-  password: 'lisagmo142000', 
+  password: '', // Asegúrate de colocar tu contraseña aquí 
   port: 5432,
   ssl: {
     rejectUnauthorized: false  
