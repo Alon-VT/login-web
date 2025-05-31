@@ -6,10 +6,13 @@ const app = express();
 
 
 const pool = new Pool({
-  user: 'postgres', 
-  host: '',  // agrega tu host de PostgreSQL S
+  user: '', // Cambia esto por tu usuario de PostgreSQL
+  host: '', // Cambia esto por tu host de PostgreSQL
+  // Por ejemplo, 'localhost' o la IP de tu servidor
+  // Si estás usando un servicio en la nube, coloca aquí la URL del host
   database: 'rednova', 
-  password: '', // Asegúrate de colocar tu contraseña aquí 
+  password: '',  // Cambia esto por tu contraseña de PostgreSQL
+  
   port: 5432,
   ssl: {
     rejectUnauthorized: false  
@@ -91,7 +94,7 @@ app.post('/send-message', async (req, res) => {
 
   const mailOptions = {
     from: `"${name}" <${email}>`,
-    to: '',               
+    to: '',              
     subject: 'Mensaje desde formulario de contacto RedNova',
     text: `
     Nombre: ${name}
