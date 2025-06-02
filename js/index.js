@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const { Pool } = require('pg');
@@ -5,60 +6,60 @@ const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const app = express();
 
+// Conexión con PostgreSQL usando variables de entorno
 const pool = new Pool({
-  user: '', // Tu usuario de la base de datos
-  host: '', // Tu host de la base de datos
-  database: '', // Tu nombre de la base de datos
-  password: '', // Tu contraseña de la base de datos
-  port: 5432,
+  user: process.env.PG_USER,
+  host: process.env.PG_HOST,
+  database: process.env.PG_DATABASE,
+  password: process.env.PG_PASSWORD,
+  port: process.env.PG_PORT || 5432,
   ssl: {
     rejectUnauthorized: false
   }
 });
 
+// Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
+// Si tienes rutas, asegúrate que el archivo exista
+// Por ahora lo comento para evitar errores
+// const ventasRoutes = require('./routes/ventas');
+// app.use('/api', ventasRoutes);
 
+// Rutas principales
 
-const ventasRoutes = require('./routes/ventas');
-app.use('/api', ventasRoutes);
-
-// Puedes hacer lo mismo para compras, finanzas, etc.
-
-
-// Registro con área relacionada por id el cual se obtiene de la tabla areas
 app.post('/register', async (req, res) => {
   const { name, email, password, area } = req.body;
 
   try {
-    // Verificar usuario existe si ya está registrado de lo contrario no se puede registrar
     if (!name || !email || !password || !area) {
       return res.status(400).json({ error: 'Todos los campos son obligatorios' });
     }
-    // Verificar si el usuario ya existe
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({ error: 'Correo electrónico inválido' });
     }
+
     if (password.length < 6) {
       return res.status(400).json({ error: 'La contraseña debe tener al menos 6 caracteres' });
     }
+
     const userExists = await pool.query('SELECT id FROM usuarios WHERE email = $1', [email]);
     if (userExists.rowCount > 0) {
       return res.status(400).json({ error: 'El correo ya está registrado' });
     }
 
-    // Obtener id del área
     const areaResult = await pool.query('SELECT id FROM areas WHERE nombre = $1', [area]);
     if (areaResult.rowCount === 0) {
       return res.status(400).json({ error: 'Área inválida' });
     }
-    const areaId = areaResult.rows[0].id;
 
+    const areaId = areaResult.rows[0].id;
     const hashedPassword = await bcrypt.hash(password, 10);
+
     await pool.query(
       'INSERT INTO usuarios (nombre, email, password, area_id) VALUES ($1, $2, $3, $4)',
       [name, email, hashedPassword, areaId]
@@ -71,7 +72,6 @@ app.post('/register', async (req, res) => {
   }
 });
 
-// Login con join para traer nombre de área
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -100,7 +100,7 @@ app.post('/login', async (req, res) => {
     res.status(500).json({ error: 'Error en el servidor' });
   }
 });
-// Registrar una nueva reservación
+
 app.post('/reservar', async (req, res) => {
   const { nombre, email, telefono, fecha_hora, motivo } = req.body;
   try {
@@ -115,7 +115,6 @@ app.post('/reservar', async (req, res) => {
   }
 });
 
-// Obtener visitantes activos (sin salida)
 app.get('/visitantes/activos', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM visitantes WHERE salida IS NULL ORDER BY entrada DESC');
@@ -126,7 +125,6 @@ app.get('/visitantes/activos', async (req, res) => {
   }
 });
 
-// Registrar salida de visitante
 app.post('/visitantes/salida/:id', async (req, res) => {
   const { id } = req.params;
   try {
@@ -138,28 +136,22 @@ app.post('/visitantes/salida/:id', async (req, res) => {
   }
 });
 
-// Ruta para enviar mensajes por correo
 app.post('/send-message', async (req, res) => {
   const { name, email, message } = req.body;
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'TU_EMAIL@gmail.com',     // Pon aquí tu email
-      pass: 'TU_CONTRASEÑA_APP',      // Pon aquí tu contraseña de app o token OAuth
+      user: process.env.EMAIL_USER,     // Usa variables de entorno para seguridad
+      pass: process.env.EMAIL_PASS
     }
   });
 
   const mailOptions = {
     from: `"${name}" <${email}>`,
-    to: 'DESTINATARIO@correo.com',     // Pon aquí a quién quieres enviar el correo
+    to: process.env.RECEIVER_EMAIL,
     subject: 'Mensaje desde formulario de contacto RedNova',
-    text: `
-Nombre: ${name}
-Correo: ${email}
-Mensaje:
-${message}
-    `
+    text: `Nombre: ${name}\nCorreo: ${email}\nMensaje:\n${message}`
   };
 
   try {
@@ -171,7 +163,7 @@ ${message}
   }
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });

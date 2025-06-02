@@ -2,36 +2,42 @@
 
 Este proyecto es el sitio web oficial de **RedNova**, una empresa especializada en el desarrollo de redes. El objetivo principal es proporcionar una plataforma clara, profesional y funcional para la interacción con clientes, incluyendo una sección de recepción donde se pueden realizar reservaciones directamente.
 
+---
+
 ## ✨ Características principales
 
 - Página de inicio con información corporativa.
 - Formulario de recepción funcional para realizar reservaciones.
 - Conexión a base de datos PostgreSQL.
 - Diseño moderno con buena accesibilidad y contraste visual.
-- Despliegue en servidor privado que ejecita la base de datos de forma local 
-- Optimizado para uso con shell Zsh y terminal kitty
+- Despliegue en servidor privado que ejecuta la base de datos de forma local.
+- Optimizado para uso con shell Zsh y terminal kitty.
+
+---
 
 ## 🛠️ Tecnologías utilizadas
 
- Componente    | Tecnología        
----------------|-------------------
- Frontend      | HTML5, CSS3, JavaScript 
- Backend       | Node.js ,expres
- Base de datos | PostgreSQL 
- servidor      | (Debian Bookworm) 
- Shell         | Zsh 
- Terminal      | kitty y Alacritty
+| Componente   | Tecnología               |
+|--------------|-------------------------|
+| Frontend     | HTML5, CSS3, JavaScript |
+| Backend      | Node.js, Express        |
+| Base de datos| PostgreSQL              |
+| Servidor     | Debian Bookworm         |
+| Shell        | Zsh                     |
+| Terminal     | kitty y Alacritty       |
 
+---
 
 ## 📦 Instalación local
 
 ### Requisitos previos
 
 - PostgreSQL instalado y funcionando.
-- Node.js v18+ 
-- Git
+- Node.js v18 o superior.
+- Git instalado.
 
-### Pasos
+### Pasos para instalación y ejecución
+
 
 1. Clona el repositorio:
 
@@ -71,22 +77,24 @@ npm run dev
 
 ```
 rednova-website/
-|__ js/
-|     index.js          #conexion con la db 'ps'
 │
-├── public/            #Archivos estáticos tipo html ________________
-│   ├──/AREAS          #conenido estáticos tipo html                 |
-│   ├──/CSS            #css para darle estilo a el login y el index  |
-│   ├──/JS             #javascipt de los paneles de login y etc.     |
-│   ├──/IMG                                                          |
-|   /index.html                                                      |   
-|   /login.html        <---------------------------------------------->
-|   /registor.html
-|         
+├── js/
+│   └── index.js          # Backend: conexión a la base de datos y rutas
 │
-├── node_modules
-├── package.json
-└── README.md
+├── public/               # Archivos estáticos (frontend)
+│   ├── AREAS/            # Contenido HTML estático de áreas específicas
+│   ├── CSS/              # Archivos CSS para estilos
+│   ├── JS/               # Scripts JavaScript del frontend
+│   ├── IMG/              # Imágenes usadas en el sitio
+│   ├── index.html        # Página principal
+│   ├── login.html        # Página de login (futura funcionalidad)
+│   └── registro.html     # Página de registro (futura funcionalidad)
+│
+├── node_modules/         # Módulos de Node.js instalados
+├── .env                
+├── package.json          # Configuración del proyecto y dependencias
+└── README.md             # Documentación del proyecto (este archivo)
+
 ```
 
 ## ✅ Funcionalidades futuras
